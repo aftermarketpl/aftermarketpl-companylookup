@@ -220,6 +220,10 @@ class GusReader implements Reader
         if ($emailAddress) {
             $companyData->emailAddresses[] = $emailAddress;
         }
+        $telephoneNumber = $this->getField($activityReport[0], 'numerTelefonu');
+        if ($telephoneNumber) {
+            $companyData->phoneNumbers[] = $telephoneNumber;
+        }
         $faxNumber = $this->getField($activityReport[0], 'numerFaksu');
         if ($faxNumber) {
             $companyData->faxNumbers[] = $faxNumber;

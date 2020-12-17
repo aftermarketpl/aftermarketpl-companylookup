@@ -157,9 +157,10 @@ final class GusTest extends TestCase
         $this->assertFalse($response->valid);
     }
 
-    public function testFax(): void
+    public function testPhoneAndFax(): void
     {
         $response = self::$reader->lookup('7542935038');
+        $this->assertEquals(['774744056'], $response->phoneNumbers);
         $this->assertEquals(['774744056'], $response->faxNumbers);
     }
 }
