@@ -270,7 +270,7 @@ class CeidgReader implements Reader
 
         $companyData->identifiers = [];
         $companyData->identifiers[] = new CompanyIdentifier(IdentifierType::NIP, $json['wlasciciel']['nip']);
-        $companyData->identifiers[] = new CompanyIdentifier(IdentifierType::REGON, $json['wlasciciel']['regon']);
+        $companyData->identifiers[] = new CompanyIdentifier(IdentifierType::REGON, $json['wlasciciel']['regon'] ?? "");
         $companyData->startDate = $json['dataRozpoczecia'];
         $companyData->pkdCodes = $json['pkd'] ?? [];
 
@@ -296,15 +296,15 @@ class CeidgReader implements Reader
     {
         $companyAddress = new CompanyAddress();
         $companyAddress->country = 'PL';
-        $companyAddress->postalCode = $address['kod'];
-        $companyAddress->city = $address['miasto'];
+        $companyAddress->postalCode = $address['kod'] ?? "";
+        $companyAddress->city = $address['miasto'] ?? "";
 
         if(!empty($address['lokal']))
-            $companyAddress->address = sprintf("%s %s m. %s", $address['ulica'], $address['budynek'], $address['lokal']);
+            $companyAddress->address = sprintf("%s %s m. %s", $address['ulica'] ?? "", $address['budynek'] ?? "", $address['lokal'] ?? "");
         else if(!empty($address['ulica']))
-            $companyAddress->address = sprintf("%s %s", $address['ulica'], $address['budynek']);
+            $companyAddress->address = sprintf("%s %s", $address['ulica'] ?? "", $address['budynek'] ?? "");
         else
-            $companyAddress->address = sprintf("%s %s", $address['miasto'], $address['budynek']);
+            $companyAddress->address = sprintf("%s %s", $address['miasto'] ?? "", $address['budynek'] ?? "");
 
         return $companyAddress;
     }

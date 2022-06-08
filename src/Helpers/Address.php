@@ -14,7 +14,7 @@ class Address
 
         $lines = array_filter($lines, function ($line)
         {
-            return !empty($line);
+            return !empty(trim($line));
         });
 
         $zipRegex = Validator::getZipRegex($country);
@@ -93,10 +93,11 @@ class Address
                 $address = join(" ", $lines);
                 break;
             case "HU": //Hungary
-                preg_match("/^(?<zip>$zipRegex)\s(?<city>.*?)\s(?<addr>.*)$/", array_pop($lines), $matches);
-                $zip = $matches["zip"];
-                $city = $matches["city"];
-                $lines[] = $matches["addr"];
+                //preg_match("/^(?<zip>$zipRegex)\s(?<city>.*?)\s(?<addr>.*)$/", array_pop($lines), $matches);
+                preg_match("/^(?<addr>.*)\s(?<zip>$zipRegex)\s(?<city>.*?)$/", array_pop($lines), $matches);
+                $zip = $matches["zip"] ?? "";
+                $city = $matches["city"] ?? "";
+                $lines[] = $matches["addr"] ?? "";
                 $address = join(" ", $lines);
                 break;
             case "BG": //Bulgaria
