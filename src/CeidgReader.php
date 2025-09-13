@@ -18,7 +18,7 @@ class CeidgReader implements Reader
     use Traits\ResolvesVatid;
     use Traits\ValidatesVatid;
 
-    private $url = 'https://dane.biznes.gov.pl/api/ceidg/v2';
+    private $url = 'https://dane.biznes.gov.pl/api/ceidg/v3';
     private $apiKey = '';
 
     public function __construct(string $apikey = '')
