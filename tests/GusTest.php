@@ -112,10 +112,10 @@ final class GusTest extends TestCase
 
     public function testEmptyStreetAddress(): void
     {
-        $response = self::$reader->lookup('8361775092');
+        $response = self::$reader->lookup('7581005177');
         $mainAddress = $response->mainAddress;
         $this->assertNotEmpty($mainAddress);
-        $this->assertEquals('Miedniewice 167', $mainAddress->address);
+        $this->assertEquals('ul. Starowiejska 15', $mainAddress->address);
     }
 
     public function testDeleted(): void

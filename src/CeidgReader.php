@@ -214,6 +214,8 @@ class CeidgReader implements Reader
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $this->apiKey]);
+        $curlVersion = curl_version()['version'];
+        curl_setopt($curl, CURLOPT_USERAGENT, 'curl/' . $curlVersion);
         $response = curl_exec($curl);
         $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
