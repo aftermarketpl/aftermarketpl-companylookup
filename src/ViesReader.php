@@ -17,7 +17,7 @@ class ViesReader implements Reader
     use Traits\ValidatesVatid;
 
     
-    public $ws_url = 'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl?wsdl';
+    public $ws_url = 'https://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl?wsdl';
     private $api = null;
 
     /**
